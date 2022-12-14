@@ -13,33 +13,33 @@ class Book extends Model {
 
   static get jsonSchema() {
     return {
-        type: 'object',
-        required: ['title'],
-        properties: {
-            id: stringType({ format: 'uuid' }),
-            isbn: stringType(),
-            title: stringType({ minLength: 1 }),
-            edition: stringType(),
-            readStatus: boolType()
-        }
+      type: 'object',
+      required: ['title'],
+      properties: {
+        id: stringType({ format: 'uuid' }),
+        isbn: stringType(),
+        title: stringType({ minLength: 1 }),
+        edition: stringType(),
+        readStatus: boolType()
+      }
     }
   }
 
   static get relationMappings() {
+    import Author from './Author.js';
     return {
-        // TODO
-        // authors: {
-        //     relation: Model.ManyToManyRelation,
-        //     modelClass: Author,
-        //     join: {
-        //         from: 'books.id',
-        //         through: {
-        //             from: 'book_authors.book_id',
-        //             to: 'book_authors.author_id',
-        //         },
-        //         to: 'authors.id'
-        //     }
-        // }
+      authors: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Author,
+        join: {
+          from: 'books.id',
+          through: {
+            from: 'book_authors.book_id',
+            to: 'book_authors.author_id',
+          },
+          to: 'authors.id'
+        }
+      }
     }
   }
 }

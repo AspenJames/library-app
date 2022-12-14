@@ -1,0 +1,44 @@
+import { Model } from 'objection';
+
+import { stringType } from './_schemaTypes';
+
+class Author extends Model {
+  static get tableName() {
+    return 'authors'; // 20221214044901_create-authors.mjs
+  }
+
+  static get idColumn() {
+    return 'id';
+  }
+
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      required: ['name'],
+      properties: {
+        id: stringType({ format: 'uuid' }),
+        name: stringType({ minLength: 1 }),
+      }
+    }
+  }
+
+  static get relationMappings() {
+    import Book from './Book.js';
+    return {
+      books: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Book,
+        join: {
+          from: 'authors.id',
+          through: {
+            from: 'book_authors.author_id',
+            to: 'book_authors.book_id',
+          },
+          to: 'books.id'
+        }
+      }
+    }
+  }
+}
+
+export default Author;

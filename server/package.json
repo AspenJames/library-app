@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "knex": "node -r dotenv-expand/config node_modules/knex/bin/cli.js --knexfile src/db/knexfile.js",
     "start": "node -r dotenv-expand/config index.js",
-    "knex": "node -r dotenv-expand/config node_modules/knex/bin/cli.js --knexfile src/db/knexfile.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

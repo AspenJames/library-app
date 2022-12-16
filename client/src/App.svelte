@@ -1,14 +1,7 @@
 <script>
-  import Button from            './lib/Button.svelte';
-  import Row_tag from           './lib/Row_tag.svelte';
-  import Logo from              './lib/Logo.svelte';
-  import Card from              './lib/Card.svelte';
-  import Row from               './lib/Book_row.svelte';
-  import Lib_filter_menu from   './lib/Lib_filter_menu.svelte';
-  import Header from            './lib/Header.svelte'
-  import Hero from              './lib/Hero.svelte';
-  import Footer from            './lib/Footer.svelte';
-// @ts-ignore
+  import Header from  './lib/Header.svelte';
+  import Hero from    './lib/Hero.svelte';
+  import Footer from  './lib/Footer.svelte';
 </script>
 
 <head>
@@ -16,7 +9,7 @@
 </head>
 <body class="container-body">
   <div class="item-header">
-    <Header></Header>
+    <Header homepage></Header>
   </div>
   <div class="item-hero">
     <Hero></Hero>
@@ -25,7 +18,6 @@
     <Footer></Footer>
   </div>
 </body>
-
 
 <style>
   .container-body{

@@ -1,27 +1,29 @@
 <script>
     import Logo from './Logo.svelte'
+    import Link from './Link.svelte'
+    import Cprt from './Copyright.svelte'
 </script>
 
 <div class="container">
-    <div class="subcontainer1">
+    <div class="links-and-logo">
         <div class="hyperlink1">
-            <p>Mobile App</p>
+            <Link link="#home">Mobile App</Link>
         </div>
         <div class="hyperlink2">
-            <p>About</p>
+            <Link link="#home">About</Link>
         </div>
         <div class="logo">
             <Logo></Logo>
         </div>
         <div class="hyperlink3">
-            <p>Blog</p>
+            <Link link="#home">Blog</Link>
         </div>
         <div class="hyperlink4">
-            <p>Resources</p>
+            <Link link="#home">Resources</Link>
         </div>
     </div>
     <div class="subcontainer2"></div>
-    <div class="subcontainer3"> <p>Fake copyright Library inc. 2022</p></div>
+    <div class="subcontainer3"><Cprt></Cprt>></div>
 </div>
 
 <style>
@@ -35,18 +37,15 @@
         color: black;
         display: grid;
         grid-template-columns: auto;
-        grid-template-rows: 80px 1px auto;
+        grid-template-rows: 60px 1px auto;
     }
-    .subcontainer1{
+    .links-and-logo{
         grid-column-start: 1;
         grid-row-start: 1;
-        display: grid;
-        grid-template-columns: repeat(5, 20%);
-        grid-template-rows: auto;
-        margin-top: 10px;
-        margin-left: 80px;
-        margin-right: 80px;
-        min-height: 0;
+        grid-row-end: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
     .subcontainer2{
         background-color: rgb(47, 47, 47);
@@ -64,6 +63,7 @@
         grid-row-start: 1;
         object-fit: cover;
         justify-self: center;
+        align-self: center;
         font-size: 12px;
         font-weight: bold;
     }
@@ -73,6 +73,7 @@
         grid-row-start: 1;
         object-fit: cover;
         justify-self: center;
+        align-self: center;
         font-size: 12px;
         font-weight: bold;
     }
@@ -80,11 +81,11 @@
         grid-column-start: 3;
         grid-column-end: 4;
         grid-row-start: 1;
+        object-fit: cover;
         justify-self: center;
-        margin-left: 20px;
-        margin-right: 20px;
-        max-height: 100%;
-        max-width: 100%;
+        align-self: center;
+        margin-left: 0px;
+        margin-right: 0px;
     }
     .hyperlink3{
         grid-column-start: 4;
@@ -92,6 +93,7 @@
         grid-row-start: 1;
         object-fit: cover;
         justify-self: center;
+        align-self: center;
         font-size: 12px;
         font-weight: bold;
     }
@@ -101,6 +103,7 @@
         grid-row-start: 1;
         object-fit: cover;
         justify-self: center;
+        align-self: center;
         font-size: 12px;
         font-weight: bold;
     }

@@ -3,8 +3,6 @@
     import Card from "./Card.svelte";
 </script>
 
-<!--usebackground-image property in div instead of a div in a div - then only use one div for image + card overlay-->
-
 <div class="container">
     <div class="item_transparent_card"> <!--since this div only contains card this is not acting on the item button. need to lay button right in card. do this in card component-->
         <Card homepage_card>
@@ -14,7 +12,6 @@
             </div>
         </Card>
     </div>
-    
 </div>
  
 <style>

@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="subcontainer2"></div>
-    <div class="subcontainer3"><Cprt></Cprt>></div>
+    <div class="subcontainer3"><Cprt></Cprt></div>
 </div>
 
 <style>
@@ -40,17 +40,22 @@
         grid-template-rows: 60px 1px auto;
     }
     .links-and-logo{
+        --h-margin: 10%;
+
         grid-column-start: 1;
         grid-row-start: 1;
         grid-row-end: 2;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+
+        margin-left: var(--h-margin);
+        margin-right: var(--h-margin);
     }
     .subcontainer2{
         background-color: rgb(47, 47, 47);
-        margin-left: 150px;
-        margin-right: 150px;
+        margin-left: 10%;
+        margin-right: 10%;
     }
     .subcontainer3{
         font-size: 11px;
@@ -81,11 +86,8 @@
         grid-column-start: 3;
         grid-column-end: 4;
         grid-row-start: 1;
-        object-fit: cover;
-        justify-self: center;
-        align-self: center;
-        margin-left: 0px;
-        margin-right: 0px;
+        object-fit: contain;
+        margin-top: 5px;
     }
     .hyperlink3{
         grid-column-start: 4;

@@ -4,6 +4,6 @@
     img{
         /*to fit the container the logo is loaded to*/
         max-width: 100%; 
-        max-height: 100%;
+        max-height: 50px;
     }
 </style>

@@ -4,14 +4,15 @@
 </script>
 
 <div class="container">
-    <div class="item_transparent_card"> <!--since this div only contains card this is not acting on the item button. need to lay button right in card. do this in card component-->
-        <Card homepage_card>
+    <div class="card">
+        <Card>
             <p>Create a digital inventory of your physical books</p>
-            <div class="item_button">
-                <Button orange_button button_text={"Sign Up"}></Button>
+            <div class="buttons">
+                <Button button_text={"Register"} orange_button></Button>
+                <Button button_text={"Log In"}></Button>
             </div>
         </Card>
-    </div>
+   </div>
 </div>
  
 <style>
@@ -24,7 +25,7 @@
         grid-template-columns: 1280px;
         grid-template-rows: repeat(3, 1fr);
     }
-    .item_transparent_card{
+    .card{
         grid-column-start:1;
         grid-row-start:2;
         grid-row-end:3;
@@ -32,8 +33,15 @@
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: repeat(2, 50%);
+
+        width: 600px;
+        height: 200px;
+        box-sizing: border-box;
+        background: white;
+        border-radius: 30px;
+        color: rgb(75, 75, 75);
     }
-    .item_transparent_card p{
+    .card p{
         line-height: 1.2;
         text-align: center; 
         vertical-align: middle;
@@ -42,13 +50,12 @@
         font-weight: bold;
         color: black;
     }
-    .item_button{
+    .buttons{
         grid-column-start:1;
         grid-row-start:2;
         grid-row-end:3;
         justify-self: center;
         align-self: center;
-        opacity: 1;
         margin-top: 20px;
         }
 </style>

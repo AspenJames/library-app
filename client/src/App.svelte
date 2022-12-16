@@ -9,7 +9,7 @@
 </head>
 <body class="container-body">
   <div class="item-header">
-    <Header homepage></Header>
+    <Header></Header>
   </div>
   <div class="item-hero">
     <Hero></Hero>
@@ -51,46 +51,3 @@
     object-fit: cover;
   }
 </style>
-
-
-
-
-<!--
-<Logo></Logo>
--->
-
-<!--
-<Lib_filter_menu active>All</Lib_filter_menu>
-<Lib_filter_menu>Read</Lib_filter_menu>
-<Lib_filter_menu>Unread</Lib_filter_menu>
--->
-
-
-<!--
-<Button>Log In</Button>
-
-<Button>Log Out</Button>
-
-<Button orange_button>Sign Up</Button>
-
-<Button wide_orange_button>Create Account</Button>
-
-<Button add_book_button>+</Button>
-
-<Row_tag>Unread</Row_tag>
-
-<Row_tag read_tag>Read</Row_tag>
-
-<Row></Row>
-
-<Logo></Logo> 
-
-<Logo large_logo></Logo>
-
-
-<Card></Card>
-
-<Card homepage_card></Card>
--->
-
-

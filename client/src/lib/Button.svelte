@@ -19,8 +19,8 @@
 		--width: 120px;
 		--height: 30px;
 		--font-size: 14px;
-		--font-weight: 400;
-		--border: 1px solid #ff8a00;
+		--font-weight: vold;
+		--border: 2px solid #ff8a00;
 		--border-radius: 8px;
 
 		background-color: var(--background-color);
@@ -40,7 +40,6 @@
 		--color: white;
 		--font-weight: bold;
 		will-change: filter;
-
 	}
 	button.orange_button:hover{
 		filter: drop-shadow(0 0 5px #ff8a00);

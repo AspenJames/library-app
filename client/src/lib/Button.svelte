@@ -3,13 +3,9 @@
 	export let add_book_button		= false;
 	export let wide_orange_button	= false;
 	export let button_text 			= undefined;
-
-	function handleClick() {
-		alert('send api call')
-	}
 </script>
 
-<button class:orange_button class:wide_orange_button class:add_book_button on:click={handleClick}>{button_text}</button>
+<button class:orange_button class:wide_orange_button class:add_book_button on:click>{button_text}</button>
 
 <style>
 	button{
@@ -48,6 +44,7 @@
 		--background-color: #ff8a00;
 		--color: white;
 		--width: 150px;
+		--font-weight: bold;
 		will-change: filter;
 	}
 	button.wide_orange_button:hover{

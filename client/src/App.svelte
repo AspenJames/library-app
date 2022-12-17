@@ -24,7 +24,7 @@
     --body-width: 1280px;
     display: grid;
     grid-template-columns: var(--body-width);
-    grid-template-rows: [first] 50px [line2] auto [line3] 200px [last];
+    grid-template-rows: [first] 50px [line2] 600px [line3] 200px [last];
 
     background-color: white;
     font-family: "Montserrat", Sans-Serif;

@@ -1,5 +1,10 @@
 FROM node:18.12.1-alpine
 
+# Upgrade packages
+RUN apk update && \
+    apk upgrade
+
+
 WORKDIR /usr/src/app
 
 # Install node dependencies

@@ -21,6 +21,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: npm run dev
     depends_on:
       db:
         condition: service_healthy
@@ -29,6 +30,15 @@ services:
       DB_URL: $DB_URL
     ports:
       - "${PORT:-3030}:${PORT:-3030}"
+    volumes:
+      - ./src:/usr/src/app/src
+    healthcheck:
+      test: |
+        wget --no-verbose --tries=1 \
+        --spider http://localhost:${PORT-3030}/healthcheck || exit 1
+      interval: 1s
+      timeout: 5s
+      retries: 10
 
 volumes:
   db:

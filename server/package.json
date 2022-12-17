@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "nodemon -r dotenv-expand/config index.js",
     "knex": "node -r dotenv-expand/config node_modules/knex/bin/cli.js --knexfile src/db/knexfile.js",
     "start": "node -r dotenv-expand/config index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,5 +23,8 @@
     "knex": "^2.3.0",
     "objection": "^3.0.1",
     "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

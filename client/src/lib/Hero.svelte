@@ -7,7 +7,11 @@
     let name = 'username';
     let password = 'password';
 
-    let cardTransitionEnded=false;
+    let cardOutroEnded=false;
+    let cardRegisterOutroEnded=true;
+    let cardLogInOutroEnded=true;
+    let cardTransitionTime=1200;
+    let cardTransitionDelay=500;
 
     function handleRegisterClick() {
         cardVisible=false;
@@ -23,16 +27,26 @@
         cardLogInVisible=cardLogInVisible;
     };
     function handleFinalRegisterClick() {
-        alert('You are registered. Taking you to library page.')
+        cardVisible=true;
+        cardRegisterVisible=false;
+        cardRegisterOutroEnded=false;
+        cardVisible=cardVisible;
+        cardRegisterVisible=cardRegisterVisible;
+        cardRegisterOutroEnded=cardRegisterOutroEnded;
     }
     function handleFinalLogInClick() {
-        alert('You are logged in. Taking you to library page.')
+        cardVisible=true;
+        cardLogInVisible=false;
+        cardLogInOutroEnded=false;
+        cardVisible=cardVisible;
+        cardLogInVisible=cardLogInVisible;
+        cardLogInOutroEnded=cardLogInOutroEnded;
     }
 </script>
 
 <div class="container"> 
-    {#if cardVisible}
-        <div class="card" in:slide="{{ duration: 600 }}" out:slide="{{ delay: 200, duration: 1000 }}" on:outroend="{() => cardTransitionEnded = true}">
+    {#if cardVisible && cardRegisterOutroEnded && cardLogInOutroEnded}
+        <div class="card" in:slide="{{ duration: cardTransitionTime }}" out:slide="{{ delay: cardTransitionDelay, duration: cardTransitionTime }}" on:outroend="{() => cardOutroEnded = true}">
             <div class=cardP>
                 <p>Create a digital inventory of your physical books</p>
             </div>
@@ -41,8 +55,8 @@
                 <Button button_text={"Log In"} on:click={handleLogInClick}></Button>
             </div>
         </div>
-    {:else if cardRegisterVisible && cardTransitionEnded}
-        <div class="cardRegister" in:slide="{{ duration: 600 }}" out:slide="{{ duration: 1000 }}">
+    {:else if cardRegisterVisible && cardOutroEnded}
+        <div class="cardRegister" in:slide="{{ delay: cardTransitionDelay, duration: cardTransitionTime }}" out:slide="{{ delay: cardTransitionDelay, duration: cardTransitionTime }}" on:outroend="{() => cardRegisterOutroEnded = true}">
             <div class=cardRegisterP>
                 <p>Register for an account</p>
             </div>
@@ -54,8 +68,8 @@
                 <Button button_text={"Register"} wide_orange_button on:click={handleFinalRegisterClick}></Button>
             </div>
         </div>
-    {:else if cardLogInVisible && cardTransitionEnded}
-        <div class="cardRegister" in:slide="{{ duration: 600 }}" out:slide="{{ duration: 1000 }}">
+    {:else if cardLogInVisible && cardOutroEnded}
+        <div class="cardRegister" in:slide="{{delay: cardTransitionDelay, duration: cardTransitionTime }}" out:slide="{{  delay: cardTransitionDelay, duration: cardTransitionTime }}" on:outroend="{() => cardLogInOutroEnded=true}">
             <div class=cardRegisterP>
                 <p>Log in to your account</p>
             </div>

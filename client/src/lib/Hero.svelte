@@ -1,12 +1,13 @@
 <script>
     import Button from "./Button.svelte";
-    import Card from "./Card.svelte";
     import { slide , fade } from 'svelte/transition';
     let cardVisible=true;
     let cardRegisterVisible=false;
     let cardLogInVisible=false;
     let name = 'username';
     let password = 'password';
+
+    let cardTransitionEnded=false;
 
     function handleRegisterClick() {
         cardVisible=false;
@@ -31,7 +32,7 @@
 
 <div class="container"> 
     {#if cardVisible}
-        <div class="card" in:slide="{{ duration: 1000 }}" out:slide="{{ duration: 1000 }}">
+        <div class="card" in:slide="{{ duration: 600 }}" out:slide="{{ delay: 200, duration: 1000 }}" on:outroend="{() => cardTransitionEnded = true}">
             <div class=cardP>
                 <p>Create a digital inventory of your physical books</p>
             </div>
@@ -40,8 +41,8 @@
                 <Button button_text={"Log In"} on:click={handleLogInClick}></Button>
             </div>
         </div>
-    {:else if cardRegisterVisible}
-        <div class="cardRegister" in:slide="{{ duration: 1000 }}" out:slide="{{ duration: 1000 }}">
+    {:else if cardRegisterVisible && cardTransitionEnded}
+        <div class="cardRegister" in:slide="{{ duration: 600 }}" out:slide="{{ duration: 1000 }}">
             <div class=cardRegisterP>
                 <p>Register for an account</p>
             </div>
@@ -53,8 +54,8 @@
                 <Button button_text={"Register"} wide_orange_button on:click={handleFinalRegisterClick}></Button>
             </div>
         </div>
-    {:else if cardLogInVisible}
-        <div class="cardRegister" in:slide="{{ duration: 1000 }}" out:slide="{{ duration: 1000 }}">
+    {:else if cardLogInVisible && cardTransitionEnded}
+        <div class="cardRegister" in:slide="{{ duration: 600 }}" out:slide="{{ duration: 1000 }}">
             <div class=cardRegisterP>
                 <p>Log in to your account</p>
             </div>

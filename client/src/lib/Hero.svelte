@@ -10,8 +10,8 @@
     let cardOutroEnded=false;
     let cardRegisterOutroEnded=true;
     let cardLogInOutroEnded=true;
-    let cardTransitionTime=1200;
-    let cardTransitionDelay=500;
+    let cardTransitionTime=400;
+    let cardTransitionDelay=250;
 
     function handleRegisterClick() {
         cardVisible=false;

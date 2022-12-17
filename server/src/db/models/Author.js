@@ -1,6 +1,7 @@
 import { Model } from 'objection';
 
-import { stringType } from './_schemaTypes';
+import { stringType } from './_schemaTypes.js';
+import Book from './Book.js';
 
 class Author extends Model {
   static get tableName() {
@@ -23,7 +24,6 @@ class Author extends Model {
   }
 
   static get relationMappings() {
-    import Book from './Book.js';
     return {
       books: {
         relation: Model.ManyToManyRelation,

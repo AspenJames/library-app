@@ -1,6 +1,7 @@
 import { Model } from 'objection';
 
-import { boolType, stringType } from './_schemaTypes';
+import { boolType, stringType } from './_schemaTypes.js';
+import Author from './Author.js';
 
 class Book extends Model {
   static get tableName() {
@@ -26,7 +27,6 @@ class Book extends Model {
   }
 
   static get relationMappings() {
-    import Author from './Author.js';
     return {
       authors: {
         relation: Model.ManyToManyRelation,

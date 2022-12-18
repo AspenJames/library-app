@@ -33,6 +33,13 @@
 		padding: 0px;
 		text-align: center;
 		font-weight: medium;
+		will-change: filter;
+	}
+	button.unread_button:hover{
+        filter: drop-shadow(0 0 3px #ff8a00);
+    }
+	button.read_button:hover {
+		filter: drop-shadow(0 0 3px grey);
 	}
 	button.unread_button{
 		color: #ff8a00;

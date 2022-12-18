@@ -4,7 +4,7 @@
   import LibFilterMenu from './Lib_filter_menu.svelte';
 
   let books = [
-		{ read_status:false, title: 'Origins of Existence', author: 'Fred Adams', edition: 'First', ISBN: '978-1-5011-0008-6' },
+		{ read_status:true, title: 'Origins of Existence', author: 'Fred Adams', edition: 'First', ISBN: '978-1-5011-0008-6' },
 		{ read_status:false, title: 'Clean Architecture', author: 'Robert C. Martin', edition: 'First', ISBN: '978-0-13-449416-6' },
 		{ read_status:false, title: 'My Two Worlds', author: 'Sergio Chejfec', edition: 'First', ISBN: '978-1-934824-28-3' },
     { read_status:true, title: 'The Sixth Extinction', author: 'Elizabeth Kolbert', edition: 'First', ISBN: '978-1-250-06213-5'},
@@ -13,7 +13,8 @@
     { read_status:false, title: 'Gratitude', author: 'Oliver Sacks', edition: 'First', ISBN: '978-0-451-49293-7'},
     { read_status:true, title: 'When Breath Becomes Air', author: 'Paul Kalanithi', edition: 'First', ISBN: '978-0-8129-8840-6'},
     { read_status:true, title: 'Amerika', author: 'Franz Kafka', edition: 'undetermined', ISBN: '978-0-8052-1064-4'},
-    { read_status:false, title: 'This Indian Country', author: 'Frederick E. Hoxie', edition: 'undetermined', ISBN: '978-1-59420-365-7'}
+    { read_status:false, title: 'This Indian Country', author: 'Frederick E. Hoxie', edition: 'undetermined', ISBN: '978-1-59420-365-7'},
+    { read_status:undefined, title: undefined, author: undefined, edition: undefined, ISBN: undefined}
 	];
 </script>
 

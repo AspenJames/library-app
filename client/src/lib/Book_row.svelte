@@ -44,11 +44,11 @@
         /*border: 1px  rgb(212, 212, 212) solid;*/
         will-change: filter;
 
-        box-shadow: -0.25px 0.5px 0px 2px rgb(196, 196, 196);
+        box-shadow: -0.25px 0.5px 0px 1px rgb(220, 220, 220);
 
     }
     .book_row:hover{
-        filter: drop-shadow(0 0 10px rgb(196, 196, 196));
+        filter: drop-shadow(0 0 5px rgb(196, 196, 196));
     }
     .item-tag{
         align-self: center;

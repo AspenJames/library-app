@@ -1,22 +1,78 @@
 <!--book row component-->
 <script>
-    export let alt_row=false;
+    import RowTag from './Row_tag.svelte';
+    export let title=undefined;
+    export let author=undefined;
+    export let edition=undefined;
+    export let ISBN=undefined;
+    export let read_status=false;
+
 </script>
 
-<div class="book_row" class:alt_row>
-    <p>Hi</p>
+<div class="book_row">
+    <div class="item-tag">
+        <RowTag read_status={read_status}></RowTag>
+    </div>
+    <div class="item-title">
+        <p>{title}</p>
+    </div>
+    <div class="item-author">
+        <p>{author}</p>
+    </div>
+    <div class="item-edition">
+        <p>{edition}</p>
+    </div>
+    <div class="item-isbn">
+        <p>{ISBN}</p>
+    </div>
 </div>
 
 <style>
     .book_row{
+        display: grid;
+        grid-template-columns: 1fr 3fr 3fr 1fr 2fr;
+        grid-row: auto;
+
+        justify-items: start;
+        align-items: center;
+        margin-bottom: auto;
+
         width: 900px;
-        height: 40px;
+        height: 35px;
         background: white;
         border-radius: 10px;
-        color: rgb(75, 75, 75);
+        /*border: 1px  rgb(212, 212, 212) solid;*/
         will-change: filter;
+
+        box-shadow: -0.25px 0.5px 0px 2px rgb(196, 196, 196);
+
     }
     .book_row:hover{
-        filter: drop-shadow(0 0 10px #005fdc);
+        filter: drop-shadow(0 0 10px rgb(196, 196, 196));
+    }
+    .item-tag{
+        align-self: center;
+        justify-self: center;
+        line-height: 0;
+    }
+    .item-title{
+        align-self: center;
+        justify-self: start;
+        line-height: 0;
+    }
+    .item-author{
+        align-self: center;
+        justify-self: start;
+        line-height: 0;
+    }
+    .item-edition{
+        align-self: center;
+        justify-self: start;
+        line-height: 0;
+    }
+    .item-isbn{
+        align-self: center;
+        justify-self: center;
+        line-height: 0;
     }
 </style>

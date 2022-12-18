@@ -3,7 +3,10 @@
     export let active=false;
 </script>
 
-<button class="menu_button" class:active><slot /></button>
+<button class="menu_button" class:active>All</button>
+<button class="menu_button">Unread</button>
+<button class="menu_button">Read</button>
+
 
 <style>
     .menu_button{
@@ -19,7 +22,7 @@
         background-color: white;
         border-radius: 0%;
         font-weight: var(--font-weight);
-        font-size: 20px;
+        font-size: 16px;
         height: 50px;
         width: 160px;
         letter-spacing: -0.02em;
@@ -34,13 +37,4 @@
         --color: #FF8A00;
         --font-weight: 500;
     }
-    /*
-    .menu_button:hover{
-        --box-shadow: inset 1px 0px 5px 5px rgb(95, 95, 95);
-    }
-    .menu_button.active:hover{
-        --box-shadow: inset 0 0 0 0 white;
-
-    }
-    */
 </style>

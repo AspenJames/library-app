@@ -1,9 +1,9 @@
-import { Model } from 'objection';
+import Base from './Base.js';
 
 import { boolType, stringType } from './_schemaTypes.js';
 import Author from './Author.js';
 
-class Book extends Model {
+class Book extends Base {
   static get tableName() {
     return 'books'; // 20221212010204_create-books.mjs
   }
@@ -17,7 +17,6 @@ class Book extends Model {
       type: 'object',
       required: ['title'],
       properties: {
-        id: stringType({ format: 'uuid' }),
         isbn: stringType(),
         title: stringType({ minLength: 1 }),
         edition: stringType(),
@@ -29,7 +28,7 @@ class Book extends Model {
   static get relationMappings() {
     return {
       authors: {
-        relation: Model.ManyToManyRelation,
+        relation: Base.ManyToManyRelation,
         modelClass: Author,
         join: {
           from: 'books.id',
@@ -41,6 +40,11 @@ class Book extends Model {
         }
       }
     }
+  }
+
+  static async createBook(attrs = {}) {
+    const book = this.new(attrs);
+    return this.create(book);
   }
 }
 

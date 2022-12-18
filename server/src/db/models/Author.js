@@ -1,9 +1,9 @@
-import { Model } from 'objection';
+import Base from './Base.js';
 
 import { stringType } from './_schemaTypes.js';
 import Book from './Book.js';
 
-class Author extends Model {
+class Author extends Base {
   static get tableName() {
     return 'authors'; // 20221214044901_create-authors.mjs
   }
@@ -17,7 +17,6 @@ class Author extends Model {
       type: 'object',
       required: ['name'],
       properties: {
-        id: stringType({ format: 'uuid' }),
         name: stringType({ minLength: 1 }),
       }
     }
@@ -26,7 +25,7 @@ class Author extends Model {
   static get relationMappings() {
     return {
       books: {
-        relation: Model.ManyToManyRelation,
+        relation: Base.ManyToManyRelation,
         modelClass: Book,
         join: {
           from: 'authors.id',

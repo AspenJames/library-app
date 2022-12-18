@@ -12,12 +12,12 @@ const {
 
 // errResp sets default vaules and returns formatted JSON
 const errResp = (errJson = {
-  msg: '',
+  message: '',
   type: 'UnknownError',
   data: {},
 }) => {
   const respJson = {
-    msg: errJson.msg || '',
+    message: errJson.message || '',
     type: errJson.type || 'UnknownError',
     data: errJson.data || {},
     ...errJson

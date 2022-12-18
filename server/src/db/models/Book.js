@@ -46,6 +46,12 @@ class Book extends Base {
     const book = this.new(attrs);
     return this.create(book);
   }
+
+  async doUpdate(attrs = {}) {
+    const cleaned = this.$modelClass.cleanAttrs(attrs);
+    Object.assign(this, cleaned);
+    return this.$query().update(this).returning('*');
+  }
 }
 
 export default Book;

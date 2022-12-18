@@ -7,13 +7,17 @@ class Base extends Model {
     return Object.keys(this.jsonSchema.properties);
   }
 
+  static cleanAttrs(attrs) {
+    return Object.keys(attrs)
+      .filter(k => this.allowAttrs.includes(k))
+      .reduce((obj, key) => Object.assign(obj, { [key]: attrs[key] }), {});
+  }
+
   // Sanitizes input to strip out any keys not defined
   // in the jsonSchema before passing to fromJson
   static new(attrs = {}) {
-    const cleanAttrs = Object.keys(attrs)
-        .filter(k => this.allowAttrs.includes(k))
-        .reduce((obj, key) => Object.assign(obj, {[key]: attrs[key]}), {});
-    return this.fromJson(cleanAttrs);
+    const cleaned = this.cleanAttrs(attrs);
+    return this.fromJson(cleaned);
   }
 
   static async create(params) {

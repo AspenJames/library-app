@@ -27,11 +27,11 @@ const errResp = (errJson = {
 
 // TODO: need much nicer logging
 export const errorLogger = (err, req, res, next) => {
-  console.error({
+  console.error(JSON.stringify({
     error: err,
     url: req.originalUrl,
     route: req.route,
-  });
+  }));
   next(err);
 };
 

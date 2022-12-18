@@ -41,16 +41,17 @@
     <div class='filter_menu'>
       <LibFilterMenu></LibFilterMenu>
     </div>
-    <div class="button_colnames">
-      <div class="addBookButton">
-        <Button add_book_button button_text={"+"} on:click={handleAddBookClick}></Button>
-      </div>
-      <p>Title</p>
-      <p>Author</p>
-      <p>Edition</p>
-      <p>ISBN</p>
-    </div>
+    
     <div class="grid-container">
+      <div class="button_colnames_row">
+        <div class="addBookButton">
+          <Button add_book_button button_text={"+"} on:click={handleAddBookClick}></Button>
+        </div>
+        <p>Title</p>
+        <p>Author</p>
+        <p>Edition</p>
+        <p>ISBN</p>
+      </div>
       {#each books as { read_status, title, author, edition, ISBN }, i}
         <BookRow read_status={read_status} title={title} author={author} edition={edition} ISBN={ISBN} ></BookRow>
       {/each}
@@ -84,13 +85,14 @@
     height: 40px;
     width: 150px;
   }
-  .button_colnames{
+  .button_colnames_row{
+    grid-template-columns: 1fr 3fr 3fr 2fr 1fr;
     display: grid;
-    grid-template-columns: 1fr 4fr 3fr 1fr 3fr;
     grid-template-rows: auto;
     justify-items: start;
     align-items: bottom;
     color: grey;
+    width: 100%;
   }
   .grid-container{
     --table-width: 900px;
@@ -98,9 +100,6 @@
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
-
-    /*grid-template-columns: var(--table-width);
-    grid-template-rows: repeat(10, 1fr);*/
     justify-content: space-around;
 
     background-color: white;
@@ -138,4 +137,8 @@
     margin-left: 10px;
     margin-right: 10px;
     }
+    :global([ref=blue]) {
+		display: grid;
+    grid-template-columns: var(--custom-grid-teomplate-columns)
+	}
 </style>

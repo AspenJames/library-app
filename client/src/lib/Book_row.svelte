@@ -6,7 +6,6 @@
     export let edition=undefined;
     export let ISBN=undefined;
     export let read_status=false;
-
 </script>
 
 <div class="book_row">
@@ -29,8 +28,9 @@
 
 <style>
     .book_row{
+        --custom-grid-template-columns: 1fr 3fr 3fr 1fr 2fr;
         display: grid;
-        grid-template-columns: 1fr 3fr 3fr 1fr 2fr;
+        grid-template-columns: var(--custom-grid-template-columns);
         grid-row: auto;
 
         justify-items: start;

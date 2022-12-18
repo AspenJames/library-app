@@ -1,7 +1,9 @@
 <script>
-    import Header from  './Header.svelte';
-    import Lib_table from './Library_table.svelte'
-    import Footer from  './Footer.svelte';
+    import Header from  './lib/Header.svelte';
+    import Lib_table from './lib/Library_table.svelte'
+    import Footer from  './lib/Footer.svelte';
+
+  
   </script>
   
   <head>

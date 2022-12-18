@@ -4,19 +4,23 @@
     import Logo from './Logo.svelte';
 </script>
 
-{#if homepage=false}
+<div class=customHeader>
+{#if homepage==false}
     <div class="logo">
         <Logo></Logo>
     </div>
-    <Button button_text="Log Out"></Button>
+    <div class="logOutButton">
+        <Button button_text="Log Out"></Button>
+    </div>
 {:else}
     <div class="logo">
         <Logo></Logo>
     </div>
 {/if}
+</div>
 
 <style>
-    .logo{
+    .customHeader{
         --header-height: 50px;
         --header-width: 1280px;
         --horizontal-margins-width: 100px;
@@ -27,10 +31,25 @@
         box-shadow: 0px 3px 4px rgb(47, 47, 47);
         background-color: white;
         display: grid;
-        grid-template-columns: 200px auto 150px 150px;
+        grid-template-columns: 1fr 4fr;
         grid-template-rows: var(--header-height);
         margin-bottom: 10px;
         margin-left: var(--horizontal-margins-width);
         margin-right: var(--horizontal-margins-width);
+    }
+    .logo{
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        justify-self: start;
+        margin-left: 10px;
+    }
+    .logOutButton{
+        grid-row-start: 1;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        justify-self: end;
+        align-self: center;
+        margin-right: 10px;
     }
 </style>

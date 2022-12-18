@@ -9,7 +9,7 @@
 </head>
 <body class="container-body">
   <div class="item-header">
-    <Header></Header>
+    <Header homepage></Header>
   </div>
   <div class="item-hero">
     <Hero></Hero>

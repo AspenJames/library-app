@@ -24,11 +24,14 @@
     <div class="item-isbn">
         <p>{ISBN}</p>
     </div>
+    <div class="item-delete-button">
+        <button class=deleteButton>X</button>
+    </div>
 </div>
 
 <style>
     .book_row{
-        --custom-grid-template-columns: 1fr 3fr 3fr 1fr 2fr;
+        --custom-grid-template-columns: 2fr 6fr 4fr 3fr 3fr 0.5fr;
         display: grid;
         grid-template-columns: var(--custom-grid-template-columns);
         grid-row: auto;
@@ -72,7 +75,19 @@
     }
     .item-isbn{
         align-self: center;
+        justify-self: end;
+        line-height: 0;
+        margin-right: 10px;
+    }
+    .item-delete-button{
+        justify-self: center;
+    }
+    .deleteButton{ /*turn this into a component?*/
+        align-self: center;
         justify-self: center;
         line-height: 0;
-    }
+        background-color: white;
+        color: red;
+
+}
 </style>

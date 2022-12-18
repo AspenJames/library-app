@@ -26,7 +26,7 @@
       --body-width: 1280px;
       display: grid;
       grid-template-columns: var(--body-width);
-      grid-template-rows: [first] 50px [line2] 600px [line3] 200px [last];
+      grid-template-rows: [first] 50px [line2] auto [line3] 200px [last];
   
       background-color: white;
       font-family: "Montserrat", Sans-Serif;
@@ -44,7 +44,7 @@
       grid-row-start:2;
       grid-row-end:3;
       width: 100%;
-      height: auto;
+      height: 100%;
     }
     .item-footer{
       grid-column-start: 1;

@@ -13,7 +13,13 @@
     { read_status:false, title: 'Gratitude', author: 'Oliver Sacks', edition: 'First', ISBN: '978-0-451-49293-7'},
     { read_status:true, title: 'When Breath Becomes Air', author: 'Paul Kalanithi', edition: 'First', ISBN: '978-0-8129-8840-6'},
     { read_status:true, title: 'Amerika', author: 'Franz Kafka', edition: 'undetermined', ISBN: '978-0-8052-1064-4'},
-    { read_status:false, title: 'This Indian Country', author: 'Frederick E. Hoxie', edition: 'undetermined', ISBN: '978-1-59420-365-7'}
+    { read_status:false, title: 'This Indian Country', author: 'Frederick E. Hoxie', edition: 'undetermined', ISBN: '978-1-59420-365-7'},
+    { read_status: true, title: 'Between The World And Me', author: 'Ta-Nehisi Coates', edition: 'First', ISBN: '978-0-8129-9354-7'},
+    { read_status: false, title: 'The Beautiful Struggle', author: 'Ta-Nehisi Coates', edition: 'First', ISBN: '978-0-385-53746-0'},
+    { read_status: false, title: 'Did Man Create God?', author: 'David E. Comings, M.D.', edition: 'First', ISBN: '978-1-878267-72-6'},
+    { read_status: false, title: 'Gravity: how the weakest force in the universe shaped our lives', author: 'Brian Clegg', edition: 'First', ISBN: '978-0-312-61629-8'},
+    { read_status: false, title: 'The China Study', author: 'T. Colin Campbell, PhD & Thomas M. Campbell II, MD', edition: 'First', ISBN: '978-1932100-66-2'},
+    { read_status: false, title: "Quiet: the power of introverts in a world that can't stop talking", author: 'Susan Cain', edition: 'First', ISBN: '978-0-307-35215-6'}
 	];
 
   let inputTitle='title';
@@ -50,7 +56,7 @@
         <p>Title</p>
         <p>Author</p>
         <p>Edition</p>
-        <p>ISBN</p>
+        <p class=isbn>ISBN</p>
       </div>
       {#each books as { read_status, title, author, edition, ISBN }, i}
         <BookRow read_status={read_status} title={title} author={author} edition={edition} ISBN={ISBN} ></BookRow>
@@ -68,7 +74,7 @@
         <input bind:value={inputEdition}>
         <input bind:value={inputISBN}>
       </div>
-      <div class="buttons" style="margin-top: 20px;">
+      <div class="buttons" style="margin-top: 20px;"> !!!!!!!!on mouse click clear card and create aniamted checkmark verifying its added then return to library
           <Button button_text={"Add this book"} orange_button on:click={handleFinalAddBookClick}></Button>
       </div>
     </div>
@@ -80,13 +86,14 @@
     display: inline-grid;
     grid-template-rows: 3;
     width: 900px;
+    height: 100%;
   }
   .filter_menu{
     height: 40px;
     width: 150px;
   }
   .button_colnames_row{
-    grid-template-columns: 1fr 3fr 3fr 2fr 1fr;
+    grid-template-columns: 2fr 6fr 4fr 3fr 3fr 0.5fr;
     display: grid;
     grid-template-rows: auto;
     justify-items: start;
@@ -112,6 +119,7 @@
   }
   .card{
     justify-self: center;
+    align-self: center;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: repeat(3, 1fr);
@@ -141,4 +149,8 @@
 		display: grid;
     grid-template-columns: var(--custom-grid-teomplate-columns)
 	}
+  .isbn{
+    justify-self: right;
+    margin-right: 10px;
+  }
 </style>

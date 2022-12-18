@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { NotFoundError } from 'objection';
 
 import Book from '../db/models/Book.js';
 
@@ -25,11 +24,27 @@ router.get('/:id', async (req, res, next) => {
   if (book) {
     res.json({ data: book });
   } else {
-    next(new NotFoundError({
+    next(Book.createNotFoundError(null, {
       message: `Book with id ${id} not found`,
       modelClass: Book
     }));
   }
-})
+});
+
+// Edit book by id
+router.post('/:id', async (req, res, next) => {
+  const { id } = req.params;
+  const book = await Book.query().findById(id).catch(next);
+  if (book) {
+    const updated = await book.doUpdate(req.body).catch(next);
+    res.json({ data: updated });
+  } else {
+    next(Book.createNotFoundError(null, {
+      message: `Book with id ${id} not found`,
+      modelClass: Book
+    }));
+  }
+
+});
 
 export default router;

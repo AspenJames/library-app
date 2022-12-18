@@ -1,11 +1,18 @@
 <!--book row component-->
 <script>
+    import { createEventDispatcher } from 'svelte';
     import RowTag from './Row_tag.svelte';
+    import DeleteButton from './Delete_button.svelte';
     export let title=undefined;
     export let author=undefined;
     export let edition=undefined;
     export let ISBN=undefined;
     export let read_status=false;
+
+    const dispatch = createEventDispatcher();
+  
+    function forward(click) {
+        dispatch('message', click.detail)};
 </script>
 
 <div class="book_row">
@@ -24,9 +31,7 @@
     <div class="item-isbn">
         <p>{ISBN}</p>
     </div>
-    <div class="item-delete-button">
-        <button class=deleteButton>X</button>
-    </div>
+    <DeleteButton on:message={forward}></DeleteButton>
 </div>
 
 <style>
@@ -79,15 +84,4 @@
         line-height: 0;
         margin-right: 10px;
     }
-    .item-delete-button{
-        justify-self: center;
-    }
-    .deleteButton{ /*turn this into a component?*/
-        align-self: center;
-        justify-self: center;
-        line-height: 0;
-        background-color: white;
-        color: red;
-
-}
 </style>

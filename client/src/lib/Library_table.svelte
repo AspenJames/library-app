@@ -13,19 +13,21 @@
     { read_status:false, title: 'Gratitude', author: 'Oliver Sacks', edition: 'First', ISBN: '978-0-451-49293-7'},
     { read_status:true, title: 'When Breath Becomes Air', author: 'Paul Kalanithi', edition: 'First', ISBN: '978-0-8129-8840-6'},
     { read_status:true, title: 'Amerika', author: 'Franz Kafka', edition: 'undetermined', ISBN: '978-0-8052-1064-4'},
-    { read_status:false, title: 'This Indian Country', author: 'Frederick E. Hoxie', edition: 'undetermined', ISBN: '978-1-59420-365-7'},
-    { read_status:undefined, title: undefined, author: undefined, edition: undefined, ISBN: undefined}
+    { read_status:false, title: 'This Indian Country', author: 'Frederick E. Hoxie', edition: 'undetermined', ISBN: '978-1-59420-365-7'}
 	];
 </script>
 
 <span class="lib_table_span">
-  <div class="filter_search">
+  <h2 style="color:black; text-align:left;">My Library</h2>
+  <div class='filter_menu'>
     <LibFilterMenu></LibFilterMenu>
-    <div style="color:black">Search Bar</div>
   </div>
   <div class="button_colnames">
     <Button add_book_button button_text={"+"}></Button>
-    <p style="color:black">Status, Title , Author , Edition , ISBN</p>
+    <p>Title</p>
+    <p>Author</p>
+    <p>Edition</p>
+    <p>ISBN</p>
   </div>
   <div class="grid-container">
     {#each books as { read_status, title, author, edition, ISBN }, i}
@@ -40,14 +42,22 @@
     grid-template-rows: 3;
     width: 900px;
   }
-  .filter_search{
-    display: inline-block;
+  .filter_menu{
+    height: 40px;
+    width: 150px;
   }
   .button_colnames{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
+    display: grid;
+    grid-template-columns: 1fr 4fr 3fr 1fr 3fr;
+    grid-template-rows: auto;
+    justify-items: start;
+    color: grey;
+  }
+  .column_names{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 2fr;
+    color: grey;
+    text-align: left;
   }
   .grid-container{
     --table-width: 900px;

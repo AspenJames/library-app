@@ -42,8 +42,7 @@
       grid-row-start:2;
       grid-row-end:3;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
     }
     .item-footer{
       grid-column-start: 1;

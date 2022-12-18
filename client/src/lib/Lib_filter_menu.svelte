@@ -1,14 +1,21 @@
 <!--library filter menu component-->
 <script>
-    export let active=false;
+    export let active=true;
 </script>
 
-<button class="menu_button" class:active>All</button>
-<button class="menu_button">Unread</button>
-<button class="menu_button">Read</button>
+<div class="buttons">
+    <button class="menu_button" class:active>All</button>
+    <button class="menu_button">Unread</button>
+    <button class="menu_button">Read</button>
+</div>
 
 
 <style>
+    .buttons{
+        display: flex;
+        flex-direction: row ;
+        width: 150px;
+    }
     .menu_button{
         --border-bottom-width: 4px;
         --border-bottom-color: white;
@@ -23,10 +30,9 @@
         border-radius: 0%;
         font-weight: var(--font-weight);
         font-size: 16px;
-        height: 50px;
-        width: 160px;
+        height: auto;
+        width: auto;
         letter-spacing: -0.02em;
-        float: left;
         padding-bottom: 0px;
         padding-top: 2px;
         will-change: filter;

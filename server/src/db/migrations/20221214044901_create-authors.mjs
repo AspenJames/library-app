@@ -1,13 +1,9 @@
 // npm run knex migrate:make create-authors
+import { defaultCols } from "../_tools.js";
+
 export const up = async (knex) =>
   knex.schema.createTable("authors", (table) => {
-    table.uuid("id", { primaryKey: true })
-      .defaultTo(knex.raw('gen_random_uuid()'));
-    table.timestamps({
-      useTimestamps: true,
-      defaultToNow: true,
-      useCamelCase: false,
-    });
+    defaultCols(table, knex);
     table.string("name", 255).notNullable();
   });
 

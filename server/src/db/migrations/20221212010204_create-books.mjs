@@ -1,13 +1,9 @@
 // npm run knex migrate:make create-books
+import { defaultCols } from "../_tools.js";
+
 export const up = async (knex) =>
   knex.schema.createTable("books", (table) => {
-    table.uuid("id", { primaryKey: true })
-      .defaultTo(knex.raw('gen_random_uuid()'));
-    table.timestamps({
-      useTimestamps: true,
-      defaultToNow: true,
-      useCamelCase: false,
-    });
+    defaultCols(table, knex);
     table.string("isbn", 255);
     table.string("title", 255).notNullable();
     table.string("edition", 255);

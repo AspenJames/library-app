@@ -1,11 +1,9 @@
 // npm run knex migrate:make create-book-authors
+import { defaultCols } from "../_tools.js";
+
 export const up = async (knex) =>
   knex.schema.createTable("book_authors", (table) => {
-    table.timestamps({
-      useTimestamps: true,
-      defaultToNow: true,
-      useCamelCase: false,
-    });
+    defaultCols(table, knex, { id: false });
     table.uuid("book_id").references('books.id')
     table.uuid("author_id").references('authors.id')
     // Enforce unique constraint

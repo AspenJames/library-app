@@ -43,7 +43,13 @@ router.post('/:id', async (req, res, next) => {
       modelClass: Book
     }));
   }
+});
 
+// Delete book by id
+router.delete('/:id', async (req, res, next) => {
+  const { id } = req.params;
+  await Book.query().deleteById(id).catch(next);
+  res.sendStatus(200);
 });
 
 export default router;

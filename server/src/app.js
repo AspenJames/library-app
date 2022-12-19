@@ -3,6 +3,7 @@ import express from 'express';
 import { version } from './constants.js';
 import { errorHandler, errorLogger } from './error.js';
 
+import authorRouter from './routes/authorRouter.js';
 import bookRouter from './routes/bookRouter.js';
 import metaRouter from './routes/metaRouter.js';
 
@@ -18,6 +19,7 @@ app.use((_, res, next) => {
 
 // Mount routers
 app.use('/', metaRouter);
+app.use('/authors', authorRouter);
 app.use('/books', bookRouter);
 
 app.use(errorLogger);

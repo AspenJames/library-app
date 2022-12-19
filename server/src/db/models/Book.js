@@ -41,17 +41,6 @@ class Book extends Base {
       }
     }
   }
-
-  static async createBook(attrs = {}) {
-    const book = this.new(attrs);
-    return this.create(book);
-  }
-
-  async doUpdate(attrs = {}) {
-    const cleaned = this.$modelClass.cleanAttrs(attrs);
-    Object.assign(this, cleaned);
-    return this.$query().update(this).returning('*');
-  }
 }
 
 export default Book;

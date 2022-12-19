@@ -12,8 +12,7 @@ router.get('/', async (req, res) => {
 
 // Create book
 router.post('/', async (req, res, next) => {
-  const bookParams = req.body;
-  const book = await Book.createBook(bookParams).catch(next);
+  const book = await Book.create(req.body).catch(next);
   res.json({ data: { book } });
 });
 
@@ -36,7 +35,7 @@ router.post('/:id', async (req, res, next) => {
   const { id } = req.params;
   const book = await Book.query().findById(id).catch(next);
   if (book) {
-    const updated = await book.doUpdate(req.body).catch(next);
+    const updated = await book.update(req.body).catch(next);
     res.json({ data: updated });
   } else {
     next(Book.createNotFoundError(null, {

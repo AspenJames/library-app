@@ -2,26 +2,35 @@ import { Model } from 'objection';
 
 // Base model class for application
 class Base extends Model {
-  // Gets allowed attributes from jsonSchema
+  // Gets allowed attributes from jsonSchema.
   static get allowAttrs() {
     return Object.keys(this.jsonSchema.properties);
   }
 
-  static cleanAttrs(attrs) {
+  // Removes any keys in `attrs` not present in the jsonSchema.
+  static sanitize(attrs = {}) {
     return Object.keys(attrs)
       .filter(k => this.allowAttrs.includes(k))
       .reduce((obj, key) => Object.assign(obj, { [key]: attrs[key] }), {});
   }
 
-  // Sanitizes input to strip out any keys not defined
-  // in the jsonSchema before passing to fromJson
+  // Sanitizes attributes & creates a POJO.
   static new(attrs = {}) {
-    const cleaned = this.cleanAttrs(attrs);
+    const cleaned = this.sanitize(attrs);
     return this.fromJson(cleaned);
   }
 
-  static async create(params) {
-    return this.query().insert(params).returning('*')
+  // Sanitizes attributes & executes an insert.
+  static async create(attrs = {}) {
+    const cleaned = this.sanitize(attrs);
+    return this.query().insert(cleaned).returning('*');
+  }
+
+  // Sanitizes attributes & updates model instance.
+  async update(attrs = {}) {
+    const cleaned = this.$modelClass.sanitize(attrs);
+    Object.assign(this, cleaned);
+    return this.$query().update(this).returning('*');
   }
 }
 

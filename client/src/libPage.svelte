@@ -44,7 +44,7 @@
       grid-row-start:2;
       grid-row-end:3;
       width: 100%;
-      height: 100%;
+      height: 100%;;
     }
     .item-footer{
       grid-column-start: 1;
@@ -52,5 +52,6 @@
       grid-row-start: 3;
       grid-row-end: 4;
       object-fit: cover;
+      margin-top: 200px;
     }
   </style>

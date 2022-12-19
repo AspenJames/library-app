@@ -26,9 +26,9 @@
 <style>
 	button{
         background-color: white;
-		width: 45px;
-		font-size: 9px;
-		height: 15px;
+		width: 50px;
+		font-size: 10px;
+		height: 20px;
 		border-radius: 2px;
 		padding: 0px;
 		text-align: center;
@@ -36,20 +36,22 @@
 		will-change: filter;
 	}
 	button.unread_button:hover{
-        filter: drop-shadow(0 0 3px #ff8a00);
+        filter: drop-shadow(0 0 10px #ff8a00);
     }
 	button.read_button:hover {
-		filter: drop-shadow(0 0 3px grey);
+		filter: drop-shadow(0 0 10px grey);
 	}
 	button.unread_button{
 		color: #ff8a00;
 		font-weight: bold;
-		border: 1px solid #ff8a00;
+		border: 2px solid #ff8a00;
+		background-color: #fff0de;
 
 	}
 	button.read_button{
 		color: grey;
-		font-weight: normal;
-		border: 1px solid grey;
+		font-weight: bold;
+		border: 2px solid grey;
+		background-color: rgb(235, 235, 235);
 	}
 </style>

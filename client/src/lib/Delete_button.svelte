@@ -3,7 +3,7 @@
 
     const dispatch = createEventDispatcher();
 
-    function eventDeleteButtonClicked() {
+    function eventDeleteButtonClicked(delete_event) {
         dispatch('message', {text:'del button clicked'}
         )};
 </script>

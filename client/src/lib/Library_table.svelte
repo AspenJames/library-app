@@ -44,6 +44,7 @@
   let libraryTableVisible=true;
   let addBookCardVisible=false;
   let deleteBookCardVisible=false;
+  let menuFilter='all';
 
   function handleAddBookClick() {
     libraryTableVisible=false;
@@ -69,7 +70,21 @@
     libraryTableVisible=true;
     deleteBookCardVisible=deleteBookCardVisible;
     libraryTableVisible=libraryTableVisible;
-  }
+  };
+  let filter_books='all'
+  function handleAllFilterClick(filter_all) {
+    filter_books='all'
+    filter_books=filter_books;
+  };
+  function handleUnreadFilterClick(filter_read) {
+    filter_books='unread'
+    filter_books=filter_books;
+  };
+  function handleReadFilterClick(filter_unread) {
+    filter_books='read'
+    filter_books=filter_books;
+  };
+  
 
     //add function and if block for delete button bringing up the delete card
 
@@ -77,7 +92,7 @@
 
 </script>
 
-<div class="lib_table_span">
+<div class="lib_table_div">
   {#if libraryTableVisible}
     <h2 style="color:black; text-align:left;">My Library</h2>
     <div class='filter_menu'>
@@ -93,9 +108,12 @@
         <p>Edition</p>
         <p class=isbn>ISBN</p>
       </div>
-      {#each books as { read_status, title, author, edition, ISBN }, i}
-        <BookRow read_status={read_status} title={title} author={author} edition={edition} ISBN={ISBN} on:message={handleDeleteBookClick}></BookRow>
-      {/each}
+      <!--create another filtered list based on condition of LibFilterMenu-->
+      {#if filter_books=='all'}
+        {#each books as { read_status, title, author, edition, ISBN }, i}
+          <BookRow read_status={read_status} title={title} author={author} edition={edition} ISBN={ISBN} on:message={handleDeleteBookClick}></BookRow>
+        {/each}
+      {/if}
     </div>
   {:else if libraryTableVisible==false && addBookCardVisible}
     <div class="card">
@@ -131,7 +149,7 @@
 </div>
 
 <style>
-  .lib_table_span{
+  .lib_table_div{
     display: inline-grid;
     grid-template-rows: 3;
     width: 900px;

@@ -28,7 +28,7 @@
         height: var(--header-height);
         width: var(--header-width);
         max-width: 100%;
-        box-shadow: 0px 3px 4px rgb(47, 47, 47);
+        box-shadow: 0px 2px 7px rgb(113, 113, 112);
         background-color: white;
         display: grid;
         grid-template-columns: 1fr 4fr;

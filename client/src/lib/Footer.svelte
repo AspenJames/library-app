@@ -38,6 +38,8 @@
         display: grid;
         grid-template-columns: auto;
         grid-template-rows: 60px 1px auto;
+        box-shadow: 0px -2px 7px rgb(113, 113, 112);
+        margin-top: 10px;
     }
     .links-and-logo{
         --h-margin: 10%;

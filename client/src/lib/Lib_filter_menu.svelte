@@ -1,22 +1,21 @@
 <!--library filter menu component-->
+
+<!--export an event dispatcher to the lib_page to use button clicks in if-else blocks to get filtered results-->
 <script>
-    export let active=true;
+    export let activeAll=true;
+    export let activeRead=false;
+    export let activeUnread=false;
+
+    function filterAll() {
+        activeAll=true;
+    }
+    
 </script>
 
-<div class="buttons">
-    <button class="menu_button" class:active>All</button>
-    <button class="menu_button">Unread</button>
-    <button class="menu_button">Read</button>
-</div>
-
+<button class:active={true} on:click><slot /></button>
 
 <style>
-    .buttons{
-        display: flex;
-        flex-direction: row ;
-        width: 150px;
-    }
-    .menu_button{
+    button{
         --border-bottom-width: 4px;
         --border-bottom-color: white;
         --color: #555555;
@@ -37,10 +36,10 @@
         padding-top: 2px;
         will-change: filter;
     }
-    .menu_button.active{
-        --border-bottom-width: 4px;
-        --border-bottom-color: #FF8A00;
-        --color: #FF8A00;
-        --font-weight: 500;
+    button.active{
+        border-bottom: 5px orange solid;
+        font-weight: bold;
+        color: orange;
+        background-color: rgb(253, 236, 205);
     }
 </style>

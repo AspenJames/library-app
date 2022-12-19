@@ -13,21 +13,16 @@ const {
 import logger from './logger.js';
 
 // errResp sets default vaules and returns formatted JSON
-const errResp = (errJson = {
-  message: '',
-  type: 'UnknownError',
-  data: {},
-}) => {
-  const respJson = {
-    message: errJson.message || '',
-    type: errJson.type || 'UnknownError',
-    data: errJson.data || {},
-    ...errJson
+const errResp = (err = {}) => {
+  const errJson = {
+    message: err.message || '',
+    type: err.type || 'UnknownError',
+    data: err.data || {},
+    ...err
   };
-  return { error: respJson };
+  return { error: errJson };
 };
 
-// TODO: need much nicer logging
 export const errorLogger = (err, req, res, next) => {
   logger.log('error', {
     error: err,

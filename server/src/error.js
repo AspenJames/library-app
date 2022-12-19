@@ -10,6 +10,8 @@ const {
   DataError
 } = objection;
 
+import logger from './logger.js';
+
 // errResp sets default vaules and returns formatted JSON
 const errResp = (errJson = {
   message: '',
@@ -27,11 +29,11 @@ const errResp = (errJson = {
 
 // TODO: need much nicer logging
 export const errorLogger = (err, req, res, next) => {
-  console.error(JSON.stringify({
+  logger.log('error', {
     error: err,
     url: req.originalUrl,
     route: req.route,
-  }));
+  });
   next(err);
 };
 

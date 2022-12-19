@@ -1,7 +1,9 @@
 import express from 'express';
+import expressWinston from 'express-winston';
 
 import { version } from './constants.js';
 import { errorHandler, errorLogger } from './error.js';
+import logger from './logger.js';
 
 import authorRouter from './routes/authorRouter.js';
 import bookRouter from './routes/bookRouter.js';
@@ -15,7 +17,11 @@ app.disable('x-powered-by');
 app.use((_, res, next) => {
   res.set('library-app-api-version', version);
   next();
-})
+});
+app.use(expressWinston.logger({
+  winstonInstance: logger,
+  ignoredRoutes: ['/healthcheck'],
+}));
 
 // Mount routers
 app.use('/', metaRouter);

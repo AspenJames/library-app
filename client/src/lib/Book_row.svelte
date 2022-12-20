@@ -4,37 +4,78 @@
     import RowTag from './Row_tag.svelte';
     import DeleteButton from './Delete_button.svelte';
     import ConfirmButton from './Confirm_button.svelte';
-    import { backIn, elasticIn, expoOut, quintIn } from 'svelte/easing';
+    import { backIn, elasticIn, expoOut, quintIn, cubicOut, linear, quartOut, quadIn, sineIn } from 'svelte/easing';
     export let title=undefined;
     export let author=undefined;
     export let edition=undefined;
     export let ISBN=undefined;
     export let read_status=false;
+    
 
+    function handleConfirmDeleteBookClick(confirm_delete_event) {
+        normalRowSize=true;
+        normalRowSize=normalRowSize;
+    }
+
+    let randomY = 1;
+    let randomX = 1;
+    function getRndInteger(min=-400, max=400) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+    function genRandomX_Y () {{
+        randomY = getRndInteger();
+        randomY=randomY;
+        randomX = getRndInteger();
+        randomX=randomX;
+    }  }
+    genRandomX_Y();
 
     let normalRowSize = true;
     function handleDeleteBookClick(delete_event) {
         normalRowSize=false;
         normalRowSize=normalRowSize;
-    }
-    function handleConfirmDeleteBookClick(confirm_delete_event) {
-        normalRowSize=true;
-        normalRowSize=normalRowSize;
-    }
-    let randomY = 1;
-    let randomX = 1;
-    function genRandomX_Y () {
-        randomY = (Math.floor(Math.random() * 10) + 1)*100;
-        randomY=randomY;
-        randomX = (Math.floor(Math.random() * 10) + 1)*100;
-        randomX=randomX;
-    }
-    
+    };
+
+   
+/*
+    export interface FlyParams {
+	delay?: number;
+	duration?: number;
+	easing?: EasingFunction;
+	x?: number;
+	y?: number;
+	opacity?: number;
+}
+
+export function fly(node: Element, {
+	delay = 0,
+	duration = 400,
+	easing = cubicOut,
+	x = 0,
+	y = 0,
+	opacity = 0
+}: FlyParams = {}): TransitionConfig {
+	const style = getComputedStyle(node);
+	const target_opacity = +style.opacity;
+	const transform = style.transform === 'none' ? '' : style.transform;
+
+	const od = target_opacity * (1 - opacity);
+
+	return {
+		delay,
+		duration,
+		easing,
+		css: (t, u) => `
+			transform: ${transform} translate(${(1 - t) * x}px, ${(1 - t) * y}px);
+			opacity: ${target_opacity - (od * u)}`
+	};
+}
+
+   */ 
 </script>
 
-<!--pass a -1 multiplier from library for every other row and apply a negative x fly in for those so it looks like table is building instead of all flying in from one area-->
 {#if normalRowSize}
-    <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: 300, duration: 700, easing: quintIn }}">
+    <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: 200, duration: 800, easing: sineIn }}">
         <div class="item-tag">
             <RowTag read_status={read_status}></RowTag>
         </div>

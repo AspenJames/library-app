@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "dev": "nodemon -r dotenv-expand/config index.js",
+    "knex": "node -r dotenv-expand/config node_modules/knex/bin/cli.js --knexfile src/db/knexfile.js",
+    "start": "node -r dotenv-expand/config index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -15,6 +17,16 @@
   "author": "Aspen James <https://github.com/aspenjames>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "dotenv-expand": "^9.0.0",
+    "express": "^4.18.2",
+    "express-winston": "^4.2.0",
+    "knex": "^2.3.0",
+    "objection": "^3.0.1",
+    "pg": "^8.8.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

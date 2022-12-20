@@ -5,8 +5,6 @@ services:
     plan: free
     region: oregon
     env: docker
-    dockerfilePath: ./server/Dockerfile
-    dockerContext: ./server
     numInstances: 1
     healthCheckPath: /healthcheck
     envVars:

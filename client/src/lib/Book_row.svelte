@@ -12,13 +12,9 @@
     export let ISBN=undefined;
     export let read_status=false;
 
-    
-  
-
     let transitionOnPageLoad = false;
     onMount(() => transitionOnPageLoad = true);
 
-    
     let normalRowSize = true;
     let randomY = 1;
     let randomX = 1;
@@ -30,7 +26,7 @@
         normalRowSize=normalRowSize;
     }
     //generates random integer between min and max inclusively
-    function getRndInteger(min=-400, max=400) {
+    function getRndInteger(min=-250, max=250) {
         return Math.floor(Math.random() * (max - min + 1) ) + min;
     }
     function genRandomX_Y () {{
@@ -40,7 +36,7 @@
         randomX=randomX;
     }  }
     function genRandomDelay () {
-        randomDelay = getRndInteger(100, 500);
+        randomDelay = getRndInteger(250, 350);
         randomDelay=randomDelay;
     }
     function genRandomDuration () {
@@ -51,6 +47,8 @@
         normalRowSize=false;
         normalRowSize=normalRowSize;
     };
+
+
 
     genRandomX_Y();
     genRandomDelay();

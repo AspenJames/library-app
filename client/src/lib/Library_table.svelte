@@ -1,9 +1,14 @@
 <script>
+  import { slide, fly } from 'svelte/transition';
+  import { onMount } from 'svelte';
   import BookRow from './Book_row.svelte';
   import Button from './Button.svelte';
-    import FilterAllButton from './filterAllButton.svelte';
-    import FilterReadButton from './filterReadButton.svelte';
-    import FilterUnreadButton from './filterUnreadButton.svelte';
+  import FilterAllButton from './filterAllButton.svelte';
+  import FilterReadButton from './filterReadButton.svelte';
+  import FilterUnreadButton from './filterUnreadButton.svelte';
+
+let transitionOnPageLoad = false;
+    onMount(() => transitionOnPageLoad = true);
 
   let books = [
 		{ read_status:true, title: 'Origins of Existence', author: 'Fred Adams', edition: 'First', ISBN: '978-1-5011-0008-6' },
@@ -112,8 +117,11 @@
 
 </script>
 
+
 <div class="lib_table_div">
+  {#if transitionOnPageLoad}
   {#if libraryTableVisible}
+  <div in:fly="{{x:-300, duration:500, delay:50}}" out:fly="{{x:600, duration:500, delay:200}}">
     <h2 style="color:black; text-align:left;">My Library</h2>
     <div class='filter_menu'>
       <FilterAllButton filterAll={filterAll} on:filter-all={handleFilterAllClick}></FilterAllButton>
@@ -145,8 +153,9 @@
         {/each}
       {/if}
     </div>
+  </div>
   {:else if libraryTableVisible==false && addBookCardVisible}
-    <div class="card">
+    <div class="card" in:slide="{{ delay: 700, duration: 600}}" out:slide="{{ delay: 100, duration: 200}}">
       <div class=cardP>
           <p>Add a book to your library</p>
       </div>
@@ -161,7 +170,9 @@
       </div>
     </div>
   {/if}
+  {/if}
 </div>
+
 
 <style>
   .lib_table_div{

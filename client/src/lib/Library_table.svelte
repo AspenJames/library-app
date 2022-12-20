@@ -66,12 +66,6 @@
     deleteBookCardVisible=deleteBookCardVisible;
     libraryTableVisible=libraryTableVisible;
   };
-  function handleFinalDeleteBookClick() {
-    deleteBookCardVisible=false;
-    libraryTableVisible=true;
-    deleteBookCardVisible=deleteBookCardVisible;
-    libraryTableVisible=libraryTableVisible;
-  };
   export let filterAll = true;
   export let filterUnread = false;
   export let filterRead = false;
@@ -164,21 +158,6 @@
       </div>
       <div class="buttons" style="margin-top: 20px;"> !!!!!!!!on mouse click clear card and create aniamted checkmark verifying its added then return to library
           <Button button_text={"Add this book"} orange_button on:click={handleFinalAddBookClick}></Button>
-      </div>
-    </div>
-  {:else if libraryTableVisible==false && deleteBookCardVisible}
-    <div class="card">
-      <div class=cardP>
-          <p>Delete this book from your library</p>
-      </div>
-      <div class="inputs">
-        <input bind:value={inputTitle}>
-        <input bind:value={inputAuthor}>
-        <input bind:value={inputEdition}>
-        <input bind:value={inputISBN}>
-      </div>
-      <div class="buttons" style="margin-top: 20px;"> !!!!!!!!change this to a confirm button next to the row
-        <Button button_text={"Delete this book"} orange_button on:click={handleFinalDeleteBookClick}></Button>
       </div>
     </div>
   {/if}

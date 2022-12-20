@@ -1,24 +1,35 @@
 <!--book row component-->
 <script>
-    import { slide , fly} from 'svelte/transition';
+    import { fly } from 'svelte/transition';
+    import { onMount } from 'svelte';
     import RowTag from './Row_tag.svelte';
     import DeleteButton from './Delete_button.svelte';
     import ConfirmButton from './Confirm_button.svelte';
-    import { backIn, elasticIn, expoOut, quintIn, cubicOut, linear, quartOut, quadIn, sineIn } from 'svelte/easing';
+    import { backIn, elasticIn, expoOut, quintIn, quintOut, cubicOut, linear, quartOut, quadIn, sineIn, backOut, elasticOut, bounceOut } from 'svelte/easing';
     export let title=undefined;
     export let author=undefined;
     export let edition=undefined;
     export let ISBN=undefined;
     export let read_status=false;
+
     
+  
+
+    let transitionOnPageLoad = false;
+    onMount(() => transitionOnPageLoad = true);
+
+    
+    let normalRowSize = true;
+    let randomY = 1;
+    let randomX = 1;
+    let randomDelay = 50;
+    let randomDuration = 50;
 
     function handleConfirmDeleteBookClick(confirm_delete_event) {
         normalRowSize=true;
         normalRowSize=normalRowSize;
     }
-
-    let randomY = 1;
-    let randomX = 1;
+    //generates random integer between min and max inclusively
     function getRndInteger(min=-400, max=400) {
         return Math.floor(Math.random() * (max - min + 1) ) + min;
     }
@@ -28,26 +39,22 @@
         randomX = getRndInteger();
         randomX=randomX;
     }  }
-    genRandomX_Y();
-    let randomDelay = 50;
     function genRandomDelay () {
         randomDelay = getRndInteger(100, 500);
         randomDelay=randomDelay;
     }
-    genRandomDelay();
-    let randomDuration = 50;
     function genRandomDuration () {
-        randomDuration = getRndInteger(600, 1000);
+        randomDuration = getRndInteger(1000, 1500);
         randomDuration=randomDuration;
     }
-    genRandomDuration();
-
-    let normalRowSize = true;
     function handleDeleteBookClick(delete_event) {
         normalRowSize=false;
         normalRowSize=normalRowSize;
     };
 
+    genRandomX_Y();
+    genRandomDelay();
+    genRandomDuration();
    
 /*
     export interface FlyParams {
@@ -85,47 +92,48 @@ export function fly(node: Element, {
 
    */ 
 </script>
-
-{#if normalRowSize}
-    <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: randomDelay, duration: randomDuration, easing: sineIn }}">
-        <div class="item-tag">
-            <RowTag read_status={read_status}></RowTag>
+{#if transitionOnPageLoad}
+    {#if normalRowSize}
+        <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: randomDelay, duration: randomDuration, easing: bounceOut }}">
+            <div class="item-tag">
+                <RowTag read_status={read_status}></RowTag>
+            </div>
+            <div class="item-title">
+                <p>{title}</p>
+            </div>
+            <div class="item-author">
+                <p>{author}</p>
+            </div>
+            <div class="item-edition">
+                <p>{edition}</p>
+            </div>
+            <div class="item-isbn">
+                <p>{ISBN}</p>
+            </div>
+            <!--<DeleteButton on:message={forward}></DeleteButton> -->
+            <DeleteButton on:message={handleDeleteBookClick}></DeleteButton>
         </div>
-        <div class="item-title">
-            <p>{title}</p>
+    {:else}
+        <div class="book_row_short" out:fly="{{ x:-500, delay: 200, duration: 800, easing: backIn }}">
+            <div class="item-tag">
+                <RowTag read_status={read_status}></RowTag>
+            </div>
+            <div class="item-title">
+                <p>{title}</p>
+            </div>
+            <div class="item-author">
+                <p>{author}</p>
+            </div>
+            <div class="item-edition">
+                <p>{edition}</p>
+            </div>
+            <div class="item-isbn">
+                <p>{ISBN}</p>
+            </div>
+            <!--<DeleteButton on:message={forward}></DeleteButton> -->
+            <ConfirmButton on:message={handleConfirmDeleteBookClick} on:message={genRandomX_Y}>CONFIRM</ConfirmButton>
         </div>
-        <div class="item-author">
-            <p>{author}</p>
-        </div>
-        <div class="item-edition">
-            <p>{edition}</p>
-        </div>
-        <div class="item-isbn">
-            <p>{ISBN}</p>
-        </div>
-        <!--<DeleteButton on:message={forward}></DeleteButton> -->
-        <DeleteButton on:message={handleDeleteBookClick}></DeleteButton>
-    </div>
-{:else}
-    <div class="book_row_short" out:fly="{{ x:-500, delay: 200, duration: 800, easing: backIn }}">
-        <div class="item-tag">
-            <RowTag read_status={read_status}></RowTag>
-        </div>
-        <div class="item-title">
-            <p>{title}</p>
-        </div>
-        <div class="item-author">
-            <p>{author}</p>
-        </div>
-        <div class="item-edition">
-            <p>{edition}</p>
-        </div>
-        <div class="item-isbn">
-            <p>{ISBN}</p>
-        </div>
-        <!--<DeleteButton on:message={forward}></DeleteButton> -->
-        <ConfirmButton on:message={handleConfirmDeleteBookClick} on:message={genRandomX_Y}>CONFIRM</ConfirmButton>
-    </div>
+    {/if}
 {/if}
 
 

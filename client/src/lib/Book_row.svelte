@@ -4,6 +4,7 @@
     import RowTag from './Row_tag.svelte';
     import DeleteButton from './Delete_button.svelte';
     import ConfirmButton from './Confirm_button.svelte';
+    import { backIn, elasticIn, expoOut, quintIn } from 'svelte/easing';
     export let title=undefined;
     export let author=undefined;
     export let edition=undefined;
@@ -20,11 +21,20 @@
         normalRowSize=true;
         normalRowSize=normalRowSize;
     }
+    let randomY = 1;
+    let randomX = 1;
+    function genRandomX_Y () {
+        randomY = (Math.floor(Math.random() * 10) + 1)*100;
+        randomY=randomY;
+        randomX = (Math.floor(Math.random() * 10) + 1)*100;
+        randomX=randomX;
+    }
     
 </script>
 
+<!--pass a -1 multiplier from library for every other row and apply a negative x fly in for those so it looks like table is building instead of all flying in from one area-->
 {#if normalRowSize}
-    <div class="book_row" in:fly="{{ y:500, delay: 300, duration: 700 }}">
+    <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: 300, duration: 700, easing: quintIn }}">
         <div class="item-tag">
             <RowTag read_status={read_status}></RowTag>
         </div>
@@ -44,7 +54,7 @@
         <DeleteButton on:message={handleDeleteBookClick}></DeleteButton>
     </div>
 {:else}
-    <div class="book_row_short" out:fly="{{ x:-500, delay: 300, duration: 700 }}">
+    <div class="book_row_short" out:fly="{{ x:-500, delay: 200, duration: 800, easing: backIn }}">
         <div class="item-tag">
             <RowTag read_status={read_status}></RowTag>
         </div>
@@ -61,7 +71,7 @@
             <p>{ISBN}</p>
         </div>
         <!--<DeleteButton on:message={forward}></DeleteButton> -->
-        <ConfirmButton on:message={handleConfirmDeleteBookClick}>CONFIRM</ConfirmButton>
+        <ConfirmButton on:message={handleConfirmDeleteBookClick} on:message={genRandomX_Y}>CONFIRM</ConfirmButton>
     </div>
 {/if}
 
@@ -84,11 +94,11 @@
         /*border: 1px  rgb(212, 212, 212) solid;*/
         will-change: filter;
 
-        box-shadow: 0 0 5px 0px rgb(220, 220, 220);
+        box-shadow: 0 0 5px 0px rgb(200, 200, 200);
 
     }
     .book_row:hover{
-        filter: drop-shadow(0 0 5px rgb(196, 196, 196));
+        filter: drop-shadow(0 0 5px rgb(180, 180, 180));
     }
     .book_row_short{
         --custom-grid-template-columns: 2fr 6fr 4fr 3fr 3fr 0.5fr;
@@ -106,7 +116,7 @@
         /*border: 1px  rgb(212, 212, 212) solid;*/
         will-change: filter;
 
-        box-shadow: 0 0 20px 1px rgb(255, 0, 0);
+        box-shadow: 0 0 30px 1px rgb(255, 0, 0);
     }
     .item-tag{
         align-self: center;

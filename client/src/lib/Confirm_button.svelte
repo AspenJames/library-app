@@ -14,7 +14,7 @@
     button {
         color: red;
         background-color: white;
-		width: 45px;
+		width: 48px;
 		font-size: 9px;
 		height: 15px;
 		border-radius: 2px;
@@ -25,11 +25,12 @@
         border: 2px solid red;
         }
     button:hover {
-        filter: drop-shadow(1px 1px 10px red);
         background-color: lightpink;
-        width: 58px;
+        width: 65px;
         height: 20px;
         font-size: 12px;
         text-shadow: 0px 0px 5px #ffbebe;
+        color: rgb(189, 0, 0);
+        border: 4px solid rgb(189, 0, 0);
     }
 </style>

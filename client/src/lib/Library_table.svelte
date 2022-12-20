@@ -1,7 +1,9 @@
 <script>
   import BookRow from './Book_row.svelte';
   import Button from './Button.svelte';
-  import LibFilterMenu from './Lib_filter_menu.svelte';
+    import FilterAllButton from './filterAllButton.svelte';
+    import FilterReadButton from './filterReadButton.svelte';
+    import FilterUnreadButton from './filterUnreadButton.svelte';
 
   let books = [
 		{ read_status:true, title: 'Origins of Existence', author: 'Fred Adams', edition: 'First', ISBN: '978-1-5011-0008-6' },
@@ -44,7 +46,6 @@
   let libraryTableVisible=true;
   let addBookCardVisible=false;
   let deleteBookCardVisible=false;
-  let menuFilter='all';
 
   function handleAddBookClick() {
     libraryTableVisible=false;
@@ -71,24 +72,49 @@
     deleteBookCardVisible=deleteBookCardVisible;
     libraryTableVisible=libraryTableVisible;
   };
-  let filter_books='all'
-  function handleAllFilterClick(filter_all) {
-    filter_books='all'
-    filter_books=filter_books;
-  };
-  function handleUnreadFilterClick(filter_read) {
-    filter_books='unread'
-    filter_books=filter_books;
-  };
-  function handleReadFilterClick(filter_unread) {
-    filter_books='read'
-    filter_books=filter_books;
-  };
-  
+  export let filterAll = true;
+  export let filterUnread = false;
+  export let filterRead = false;
+  function handleFilterAllClick() {
+    filterAll=true;
+    filterUnread=false;
+    filterRead=false;
+    filterAll=filterAll;
+    filterUnread=filterUnread;
+    filterRead=filterRead;
+  }
+  function handleFilterUnreadClick() {
+    filterAll=false;
+    filterUnread=true;
+    filterRead=false;
+    filterAll=filterAll;
+    filterUnread=filterUnread;
+    filterRead=filterRead;
+  }
+  function handleFilterReadClick() {
+    filterAll=false;
+    filterUnread=false;
+    filterRead=true;
+    filterAll=filterAll;
+    filterUnread=filterUnread;
+    filterRead=filterRead;
+  }
 
     //add function and if block for delete button bringing up the delete card
 
-  
+  function getFilteredBooks(books, var_unread, var_read){
+    if(var_unread){
+      return books.filter(book => {
+        return book.read_status===false;
+      });
+    } else if(var_read) {
+      return books.filter(book => {
+        return book.read_status===true;
+      });
+    } else {
+      return books
+    }
+};
 
 </script>
 
@@ -96,7 +122,9 @@
   {#if libraryTableVisible}
     <h2 style="color:black; text-align:left;">My Library</h2>
     <div class='filter_menu'>
-      <LibFilterMenu></LibFilterMenu>
+      <FilterAllButton filterAll={filterAll} on:filter-all={handleFilterAllClick}></FilterAllButton>
+      <FilterUnreadButton filterUnread={filterUnread} on:filter-unread={handleFilterUnreadClick}></FilterUnreadButton>
+      <FilterReadButton filterRead={filterRead} on:filter-read={handleFilterReadClick}></FilterReadButton>
     </div>
     <div class="grid-container">
       <div class="button_colnames_row">
@@ -109,8 +137,16 @@
         <p class=isbn>ISBN</p>
       </div>
       <!--create another filtered list based on condition of LibFilterMenu-->
-      {#if filter_books=='all'}
-        {#each books as { read_status, title, author, edition, ISBN }, i}
+      {#if filterAll}
+        {#each getFilteredBooks(books, false, false) as {read_status, title, author, edition, ISBN}}
+          <BookRow read_status={read_status} title={title} author={author} edition={edition} ISBN={ISBN} on:message={handleDeleteBookClick}></BookRow>
+        {/each}
+      {:else if filterUnread}
+        {#each getFilteredBooks(books, true, false) as {read_status, title, author, edition, ISBN}}
+          <BookRow read_status={read_status} title={title} author={author} edition={edition} ISBN={ISBN} on:message={handleDeleteBookClick}></BookRow>
+        {/each}
+      {:else if filterRead}
+        {#each getFilteredBooks(books, false, true) as {read_status, title, author, edition, ISBN}}
           <BookRow read_status={read_status} title={title} author={author} edition={edition} ISBN={ISBN} on:message={handleDeleteBookClick}></BookRow>
         {/each}
       {/if}
@@ -156,8 +192,11 @@
     height: 100%;
   }
   .filter_menu{
-    height: 40px;
+    height: 30px;
     width: 150px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
   }
   .button_colnames_row{
     grid-template-columns: 2fr 6fr 4fr 3fr 3fr 0.5fr;

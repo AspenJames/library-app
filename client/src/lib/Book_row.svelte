@@ -29,6 +29,18 @@
         randomX=randomX;
     }  }
     genRandomX_Y();
+    let randomDelay = 50;
+    function genRandomDelay () {
+        randomDelay = getRndInteger(100, 500);
+        randomDelay=randomDelay;
+    }
+    genRandomDelay();
+    let randomDuration = 50;
+    function genRandomDuration () {
+        randomDuration = getRndInteger(600, 1000);
+        randomDuration=randomDuration;
+    }
+    genRandomDuration();
 
     let normalRowSize = true;
     function handleDeleteBookClick(delete_event) {
@@ -75,7 +87,7 @@ export function fly(node: Element, {
 </script>
 
 {#if normalRowSize}
-    <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: 200, duration: 800, easing: sineIn }}">
+    <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: randomDelay, duration: randomDuration, easing: sineIn }}">
         <div class="item-tag">
             <RowTag read_status={read_status}></RowTag>
         </div>

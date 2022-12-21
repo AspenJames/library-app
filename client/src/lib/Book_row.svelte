@@ -92,7 +92,7 @@ export function fly(node: Element, {
 </script>
 {#if transitionOnPageLoad}
     {#if normalRowSize}
-        <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: randomDelay, duration: randomDuration, easing: bounceOut }}">
+        <div class="book_row" in:fly="{{ x: randomX, y:randomY, delay: 200, duration: 800, easing: quintOut }}">
             <div class="item-tag">
                 <RowTag read_status={read_status}></RowTag>
             </div>
@@ -154,10 +154,9 @@ export function fly(node: Element, {
         will-change: filter;
 
         box-shadow: 0 0 5px 0px rgb(200, 200, 200);
-
     }
     .book_row:hover{
-        filter: drop-shadow(0 0 5px rgb(180, 180, 180));
+        filter: drop-shadow(0 0 6px rgb(150, 150, 150));
     }
     .book_row_short{
         --custom-grid-template-columns: 2fr 6fr 4fr 3fr 3fr 0.5fr;

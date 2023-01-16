@@ -4,7 +4,9 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"log"
 
+	"github.com/aspenjames/library-app/server/database"
 	"github.com/aspenjames/library-app/server/middlewares"
 	"github.com/aspenjames/library-app/server/routes"
 	"github.com/gofiber/fiber/v2"
@@ -16,6 +18,12 @@ var port int
 func main() {
 	flag.IntVar(&port, "p", 8080, "Port on which to listen")
 	flag.Parse()
+
+	// Connect databse
+	err := database.Init()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	app := fiber.New(fiber.Config{
 		ErrorHandler: func(c *fiber.Ctx, err error) error {

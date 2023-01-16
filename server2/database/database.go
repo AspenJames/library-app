@@ -6,6 +6,8 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+
+	"github.com/aspenjames/library-app/server/models"
 )
 
 // Pointer to database connection.
@@ -24,6 +26,11 @@ func Init() error {
 	if err != nil {
 		return err
 	}
+	migrations := []interface{}{}
+	for _, model := range models.Models {
+		migrations = append(migrations, &model)
+	}
+	db.AutoMigrate(migrations...)
 	DB = db
 	return nil
 }

@@ -8,6 +8,7 @@ import (
 
 	"github.com/aspenjames/library-app/server/database"
 	"github.com/aspenjames/library-app/server/middlewares"
+	"github.com/aspenjames/library-app/server/models"
 	"github.com/aspenjames/library-app/server/routes"
 	"github.com/gofiber/fiber/v2"
 )
@@ -19,8 +20,16 @@ func main() {
 	flag.IntVar(&port, "p", 8080, "Port on which to listen")
 	flag.Parse()
 
-	// Connect databse
+	// Connect database & run migrations.
 	err := database.Init()
+	if err != nil {
+		log.Fatal(err)
+	}
+	migrations := []interface{}{}
+	for _, model := range models.Models {
+		migrations = append(migrations, &model)
+	}
+	err = database.AutoMigrate(migrations)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -20,4 +20,7 @@ func Setup(app *fiber.App) {
 	app.Get("/healthcheck", timeoutWrapper(func(c *fiber.Ctx) error {
 		return c.SendStatus(200)
 	}))
+
+	bookRouter := app.Group("/books")
+	SetupBookRouter(bookRouter)
 }

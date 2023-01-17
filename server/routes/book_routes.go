@@ -31,12 +31,10 @@ func SetupBookRouter(router fiber.Router) {
 	// Create a book
 	router.Post("/", timeoutWrapper(func(c *fiber.Ctx) error {
 		book := models.Book{}
-		err := c.BodyParser(&book)
-		if err != nil {
+		if err := c.BodyParser(&book); err != nil {
 			return err
 		}
-		err = models.CreateBook(&book)
-		if err != nil {
+		if err := models.CreateBook(&book); err != nil {
 			return err
 		}
 		return c.JSON(fiber.Map{
@@ -47,8 +45,7 @@ func SetupBookRouter(router fiber.Router) {
 	// Update a book
 	router.Post("/:id", timeoutWrapper(func(c *fiber.Ctx) error {
 		book := models.Book{}
-		err := c.BodyParser(&book)
-		if err != nil {
+		if err := c.BodyParser(&book); err != nil {
 			return err
 		}
 		updated, err := models.UpdateBook(c.Params("id"), &book)
@@ -62,8 +59,7 @@ func SetupBookRouter(router fiber.Router) {
 
 	// Delete a book
 	router.Delete("/:id", timeoutWrapper(func(c *fiber.Ctx) error {
-		err := models.DeleteBook(c.Params("id"))
-		if err != nil {
+		if err := models.DeleteBook(c.Params("id")); err != nil {
 			return err
 		}
 		return c.JSON(fiber.Map{})

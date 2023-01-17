@@ -21,6 +21,9 @@ func Setup(app *fiber.App) {
 		return c.SendStatus(200)
 	}))
 
+	authorRouter := app.Group("/authors")
+	SetupAuthorRouter(authorRouter)
+
 	bookRouter := app.Group("/books")
 	SetupBookRouter(bookRouter)
 }

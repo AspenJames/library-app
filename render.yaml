@@ -8,12 +8,22 @@ services:
     numInstances: 1
     healthCheckPath: /healthcheck
     envVars:
-      - key: DB_URL
+      - key: POSTGRES_HOST
         fromDatabase:
           name: library
-          property: connectionString
-      - key: PORT
-        value: 80
+          property: host
+      - key: POSTGRES_DB
+        fromDatabase:
+          name: library
+          property: database
+      - key: POSTGRES_USER
+        fromDatabase:
+          name: library
+          property: user
+      - key: POSTGRES_PASSWORD
+        fromDatabase:
+          name: library
+          property: password
 
 databases:
   - name: library

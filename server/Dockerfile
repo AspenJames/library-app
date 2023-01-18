@@ -14,7 +14,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o api .
 
 FROM gcr.io/distroless/static-debian11 as final
 
-COPY --from=builder --chown=api:api /usr/src/app/api /
+COPY --from=builder /usr/src/app/api /
 
 EXPOSE 8080
 
